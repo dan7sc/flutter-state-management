@@ -13,4 +13,9 @@ main() {
   test('Validar o estado inicial do controller', () {
     expect(controller.state, Status.empty);
   });
+
+  test('Validar o uso do listen', () {
+    controller.listen((_) => print(""));
+    expect(controller.state, Status.empty);
+  });
 }

@@ -4,4 +4,8 @@ class Controller<T> {
   Controller(
     this.state,
   );
+
+  void listen(Function(T) listener) {
+    _listeners = listener;
+  }
 }
