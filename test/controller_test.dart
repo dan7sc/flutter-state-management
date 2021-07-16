@@ -14,10 +14,10 @@ main() {
     expect(controller.state, HomeStatus.empty);
   });
 
-  test('Validar o uso do listen', () {
-    var isClicked = false;
-    controller.listen((_) => isClicked = true);
-    controller.login();
-    expect(isClicked, isTrue);
+  test('Validar a função de login', () async {
+    final states = <HomeStatus>[];
+    controller.listen((state) => states.add(state));
+    await controller.login();
+    expect(states, [HomeStatus.loading, HomeStatus.success]);
   });
 }
