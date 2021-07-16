@@ -17,6 +17,7 @@ main() {
   test('Validar o uso do listen', () {
     var isClicked = false;
     controller.listen((_) => isClicked = true);
+    controller.update(Status.loading);
     expect(isClicked, isTrue);
   });
 }
