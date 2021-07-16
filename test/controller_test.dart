@@ -1,23 +1,23 @@
-import 'package:class_state_management/controller.dart';
+import 'package:class_state_management/home/home_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 enum Status { empty, error, loading, success }
 
 main() {
-  late Controller<Status> controller;
+  late HomeController controller;
 
   setUp(() {
-    controller = Controller<Status>(Status.empty);
+    controller = HomeController();
   });
 
   test('Validar o estado inicial do controller', () {
-    expect(controller.state, Status.empty);
+    expect(controller.state, HomeStatus.empty);
   });
 
   test('Validar o uso do listen', () {
     var isClicked = false;
     controller.listen((_) => isClicked = true);
-    controller.update(Status.loading);
+    controller.login();
     expect(isClicked, isTrue);
   });
 }
