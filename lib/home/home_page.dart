@@ -1,3 +1,4 @@
+import 'package:class_state_management/state_builder.dart';
 import 'package:flutter/material.dart';
 
 import 'home_count_controller.dart';
@@ -13,17 +14,14 @@ class _HomePageState extends State<HomePage> {
   final controller = HomeCountController();
 
   @override
-  void initState() {
-    controller.listen((_) => setState(() {}));
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: Text("COUNT: ${controller.state}"),
+      body: StateBuilder(
+        controller: controller,
+        child: Center(
+          child: Text("COUNT: ${controller.state}"),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: controller.increment,
