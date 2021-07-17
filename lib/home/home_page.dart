@@ -17,10 +17,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: StateBuilder(
+      body: StateBuilder<int>(
         controller: controller,
-        child: Center(
-          child: Text("COUNT: ${controller.state}"),
+        builder: (_, state) => Center(
+          child: Text("COUNT: $state"),
         ),
       ),
       floatingActionButton: FloatingActionButton(

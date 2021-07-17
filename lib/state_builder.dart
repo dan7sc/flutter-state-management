@@ -2,10 +2,11 @@ import 'package:class_state_management/controller.dart';
 import 'package:flutter/material.dart';
 
 class StateBuilder<T> extends StatefulWidget {
-  final Widget child;
-
+  final Widget Function(BuildContext context, T state) builder;
   final Controller<T> controller;
-  StateBuilder({Key? key, required this.child, required this.controller}) : super(key: key);
+
+  StateBuilder({Key? key, required this.builder, required this.controller})
+      : super(key: key);
 
   @override
   _StateBuilderState<T> createState() => _StateBuilderState<T>();
@@ -13,7 +14,13 @@ class StateBuilder<T> extends StatefulWidget {
 
 class _StateBuilderState<T> extends State<StateBuilder<T>> {
   @override
+  void initState() {
+    widget.controller.listen((_) => setState(() {}));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return widget.builder(context, widget.controller.state);
   }
 }
