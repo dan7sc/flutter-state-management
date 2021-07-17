@@ -19,9 +19,16 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(),
       body: StateBuilder<int>(
         controller: controller,
-        builder: (_, state) => Center(
-          child: Text("COUNT: $state"),
-        ),
+        builder: (_, state) {
+          if(state == 0) {
+            return Center(
+              child: Text("Nada aqui"),
+            );
+          }
+          return Center(
+            child: Text("COUNT: $state"),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: controller.increment,
