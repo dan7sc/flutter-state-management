@@ -17,21 +17,24 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: StateBuilder<int>(
+      body: StateBuilder<Ob>(
         controller: controller,
         builder: (_, state) {
-          if(state == 0) {
+          if(state.name.isNotEmpty && state.number.isNotEmpty) {
             return Center(
-              child: Text("Nada aqui"),
+              child: Text("Name ${state.name}\nNumber ${state.number}"),
             );
           }
           return Center(
-            child: Text("COUNT: $state"),
+            child: Text("Empty"),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: controller.increment,
+        onPressed: () {
+          controller.setName("Daniel");
+          controller.setNumber("123");
+        },
         child: Icon(Icons.add),
       ),
     );

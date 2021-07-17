@@ -1,9 +1,24 @@
 import 'package:class_state_management/controller.dart';
 
-class HomeCountController extends Controller<int> {
-  HomeCountController() : super(0);
+class Ob {
+  String name;
+  String number;
 
-  void increment() {
-    update(state + 1);
+  Ob({this.name = "", this.number = ""});
+}
+
+class HomeCountController extends Controller<Ob> {
+  HomeCountController() : super(Ob());
+
+  void setName(String name) {
+    var actual = state;
+    actual.name = name;
+    update(actual);
+  }
+
+  void setNumber(String number) {
+    var actual = state;
+    actual.number = number;
+    update(actual);
   }
 }
